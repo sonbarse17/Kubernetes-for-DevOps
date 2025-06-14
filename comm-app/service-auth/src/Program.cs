@@ -1,5 +1,15 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using System;
+
+class Program
+{
+    public static void Main(string[] args)
+    {
+        Console.WriteLine("Hello from service-auth!");
+    }
+}
+
 
 public class Program
 {
