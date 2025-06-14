@@ -1,0 +1,24 @@
+// This file defines the data structures used in the Order Service.
+
+export interface Order {
+    id: string;
+    customerId: string;
+    productIds: string[];
+    orderDate: Date;
+    status: 'pending' | 'shipped' | 'delivered' | 'canceled';
+}
+
+export interface OrderItem {
+    productId: string;
+    quantity: number;
+}
+
+export interface CreateOrderRequest {
+    customerId: string;
+    items: OrderItem[];
+}
+
+export interface UpdateOrderStatusRequest {
+    orderId: string;
+    status: 'pending' | 'shipped' | 'delivered' | 'canceled';
+}

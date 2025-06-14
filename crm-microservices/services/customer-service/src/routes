@@ -1,0 +1,21 @@
+import express from 'express';
+import { getAllCustomers, getCustomerById, createCustomer, updateCustomer, deleteCustomer } from '../controllers/customerController';
+
+const router = express.Router();
+
+// Route to get all customers
+router.get('/', getAllCustomers);
+
+// Route to get a customer by ID
+router.get('/:id', getCustomerById);
+
+// Route to create a new customer
+router.post('/', createCustomer);
+
+// Route to update an existing customer
+router.put('/:id', updateCustomer);
+
+// Route to delete a customer
+router.delete('/:id', deleteCustomer);
+
+export default router;

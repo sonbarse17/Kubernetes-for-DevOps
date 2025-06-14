@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  auth:
+    build:
+      context: ./service-auth
+      dockerfile: Dockerfile
+    ports:
+      - "5000:80"
+    networks:
+      - comm-net
+
+  chat:
+    build:
+      context: ./service-chat
+      dockerfile: Dockerfile
+    ports:
+      - "5001:80"
+    networks:
+      - comm-net
+
+  notification:
+    build:
+      context: ./service-notification
+      dockerfile: Dockerfile
+    ports:
+      - "5002:80"
+    networks:
+      - comm-net
+
+networks:
+  comm-net:
+    driver: bridge

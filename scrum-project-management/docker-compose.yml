@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  auth-service:
+    build:
+      context: ./services/auth-service
+    ports:
+      - "3001:3000"
+    networks:
+      - scrum-network
+
+  project-service:
+    build:
+      context: ./services/project-service
+    ports:
+      - "3002:3000"
+    networks:
+      - scrum-network
+
+  task-service:
+    build:
+      context: ./services/task-service
+    ports:
+      - "3003:3000"
+    networks:
+      - scrum-network
+
+  user-service:
+    build:
+      context: ./services/user-service
+    ports:
+      - "3004:3000"
+    networks:
+      - scrum-network
+
+  gateway:
+    build:
+      context: ./gateway
+    ports:
+      - "3000:3000"
+    networks:
+      - scrum-network
+
+networks:
+  scrum-network:
+    driver: bridge

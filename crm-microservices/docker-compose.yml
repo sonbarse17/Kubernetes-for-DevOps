@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  api-gateway:
+    build:
+      context: ./api-gateway
+    ports:
+      - "3000:3000"
+    depends_on:
+      - auth-service
+      - customer-service
+      - order-service
+
+  auth-service:
+    build:
+      context: ./services/auth-service
+    ports:
+      - "4000:4000"
+
+  customer-service:
+    build:
+      context: ./services/customer-service
+    ports:
+      - "5000:5000"
+
+  order-service:
+    build:
+      context: ./services/order-service
+    ports:
+      - "6000:6000"
+
+networks:
+  default:
+    driver: bridge

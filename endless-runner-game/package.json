@@ -1,0 +1,14 @@
+{
+  "name": "endless-runner-game",
+  "version": "1.0.0",
+  "description": "An endless runner game built with JavaScript and HTML5.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "http-server public -o"
+  },
+  "dependencies": {
+    "http-server": "^0.12.3"
+  },
+  "author": "Your Name",
+  "license": "MIT"
+}

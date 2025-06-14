@@ -1,0 +1,25 @@
+{
+  "name": "word-processor-backend",
+  "version": "1.0.0",
+  "description": "Backend for the Word Processing application",
+  "main": "src/app.ts",
+  "scripts": {
+    "start": "ts-node src/app.ts",
+    "build": "tsc",
+    "dev": "ts-node-dev src/app.ts"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "typescript": "^4.0.0",
+    "ts-node": "^9.0.0",
+    "ts-node-dev": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "license": "MIT"
+}

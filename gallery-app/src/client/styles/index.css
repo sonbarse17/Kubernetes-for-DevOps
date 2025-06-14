@@ -1,0 +1,43 @@
+/* index.css */
+
+/* Global styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+/* Gallery styles */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    padding: 20px;
+}
+
+/* Media item styles */
+.media-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.media-item img,
+.media-item video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ImageView styles */
+.image-view {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+/* VideoPlayer styles */
+.video-player {
+    max-width: 100%;
+    border-radius: 8px;
+}
