@@ -1,26 +1,22 @@
 {
-  "name": "erp-web-client",
+  "name": "financial-management-web-ui",
   "version": "1.0.0",
-  "description": "Web client for the ERP application",
-  "main": "src/app.tsx",
+  "description": "Web UI for Agile Accounting App",
+  "private": true,
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.8.1",
+    "axios": "^1.6.2",
+    "react-scripts": "5.0.1",
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.18"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-  },
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "react-router-dom": "^6.8.1",
-    "axios": "^1.6.2"
-  },
-  "devDependencies": {
-    "typescript": "^5.3.3",
-    "@types/react": "^18.2.45",
-    "@types/react-dom": "^18.2.18",
-    "@types/node": "^20.10.5"
   },
   "eslintConfig": {
     "extends": [
@@ -39,5 +35,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy": "http://localhost:3001"
 }

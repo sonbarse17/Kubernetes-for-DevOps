@@ -1,0 +1,30 @@
+{
+  "name": "ecommerce-gateway",
+  "version": "1.0.0",
+  "description": "API Gateway for E-Commerce Microservices",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "build": "tsc",
+    "dev": "ts-node-dev src/index.ts"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "axios": "^1.6.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "http-proxy-middleware": "^2.0.6"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.1",
+    "typescript": "^5.3.3",
+    "ts-node-dev": "^2.0.0",
+    "nodemon": "^3.0.2",
+    "@types/express": "^4.17.21",
+    "@types/cors": "^2.8.17",
+    "@types/node": "^20.10.5"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

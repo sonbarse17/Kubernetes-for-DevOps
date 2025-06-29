@@ -1,11 +1,28 @@
 version: '3.8'
 
 services:
+  mongodb:
+    image: mongo:7
+    ports:
+      - "27017:27017"
+    volumes:
+      - db-data:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=erp_system
+    networks:
+      - erp-network
+
   auth-service:
     build:
       context: ./services/auth-service
     ports:
       - "3001:3000"
+    environment:
+      - NODE_ENV=production
+      - MONGODB_URI=mongodb://mongodb:27017/erp_auth
+      - JWT_SECRET=erp-secret-key
+    depends_on:
+      - mongodb
     networks:
       - erp-network
 
@@ -14,6 +31,11 @@ services:
       context: ./services/inventory-service
     ports:
       - "3002:3000"
+    environment:
+      - NODE_ENV=production
+      - MONGODB_URI=mongodb://mongodb:27017/erp_inventory
+    depends_on:
+      - mongodb
     networks:
       - erp-network
 
@@ -22,6 +44,11 @@ services:
       context: ./services/order-service
     ports:
       - "3003:3000"
+    environment:
+      - NODE_ENV=production
+      - MONGODB_URI=mongodb://mongodb:27017/erp_orders
+    depends_on:
+      - mongodb
     networks:
       - erp-network
 
@@ -30,6 +57,11 @@ services:
       context: ./services/user-service
     ports:
       - "3004:3000"
+    environment:
+      - NODE_ENV=production
+      - MONGODB_URI=mongodb://mongodb:27017/erp_users
+    depends_on:
+      - mongodb
     networks:
       - erp-network
 
@@ -38,15 +70,24 @@ services:
       context: ./web-client
     ports:
       - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://localhost:3001
+    depends_on:
+      - auth-service
+      - inventory-service
+      - order-service
+      - user-service
     networks:
       - erp-network
 
   nginx:
-    image: nginx:latest
+    image: nginx:alpine
     ports:
       - "80:80"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - web-client
     networks:
       - erp-network
 
@@ -55,4 +96,4 @@ networks:
     driver: bridge
 
 volumes:
-  db-data: {}
+  db-data:

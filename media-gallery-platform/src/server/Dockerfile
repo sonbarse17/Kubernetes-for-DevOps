@@ -7,6 +7,8 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 3000
+RUN mkdir -p uploads
+
+EXPOSE 5000
 
 CMD ["npm", "start"]
