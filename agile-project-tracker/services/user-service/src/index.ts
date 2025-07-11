@@ -1,17 +1,22 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import cors from 'cors';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 
-// Middleware to parse JSON requests
+// Middleware
+app.use(cors());
 app.use(express.json());
 
+// Mongoose configuration
+mongoose.set('strictQuery', false);
+
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/user-service', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://mongodb:27017/user-service')
 .then(() => console.log('MongoDB connected'))
 .catch(err => console.error('MongoDB connection error:', err));
 
@@ -43,6 +48,11 @@ app.get('/users', async (req, res) => {
     } catch (error) {
         res.status(500).send(error);
     }
+});
+
+// Health check
+app.get('/health', (req, res) => {
+    res.json({ status: 'User service is running' });
 });
 
 // Start the server

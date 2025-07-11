@@ -3,35 +3,57 @@ version: '3.8'
 services:
   client:
     build:
-      context: ../src/client
+      context: ..
+      dockerfile: src/client/Dockerfile
     ports:
       - "3000:3000"
     environment:
-      - NODE_ENV=development
-      - REACT_APP_API_URL=http://localhost:5000
+      - NODE_ENV=production
+    depends_on:
+      - server
+    restart: unless-stopped
 
   server:
     build:
-      context: ../src/server
+      context: ..
+      dockerfile: src/server/Dockerfile
     ports:
       - "5000:5000"
     environment:
-      - NODE_ENV=development
+      - NODE_ENV=production
       - MONGODB_URI=mongodb://mongo:27017/media-gallery
+      - PORT=5000
+      - CORS_ORIGIN=http://localhost:3000
+      - MAX_FILE_SIZE=50MB
+      - ALLOWED_FILE_TYPES=image/jpeg,image/png,image/gif,image/webp,video/mp4,video/webm,video/quicktime
     depends_on:
-      - mongo
+      mongo:
+        condition: service_healthy
     volumes:
       - uploads:/app/uploads
+    restart: unless-stopped
 
   mongo:
-    image: mongo:7
+    image: mongo:7-jammy
     ports:
       - "27017:27017"
     volumes:
       - mongo-data:/data/db
     environment:
       - MONGO_INITDB_DATABASE=media-gallery
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
 
 volumes:
   mongo-data:
+    driver: local
   uploads:
+    driver: local
+
+networks:
+  default:
+    name: media-gallery-network

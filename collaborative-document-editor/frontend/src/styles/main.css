@@ -1,50 +1,265 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+  color: #212529;
 }
 
-.container {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
+/* File Menu Styles */
+.file-menu {
+  background: #fff;
+  border-bottom: 1px solid #e9ecef;
+  padding: 12px 20px;
+  display: flex;
+  gap: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.menu-button {
+  padding: 8px 16px;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  background: #fff;
+  color: #495057;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.menu-button:hover {
+  background: #e9ecef;
+  border-color: #adb5bd;
+}
+
+.menu-button:active {
+  background: #dee2e6;
+}
+
+/* Toolbar Styles */
 .toolbar {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
+  background: #fff;
+  border-bottom: 1px solid #e9ecef;
+  padding: 12px 20px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }
 
-.button {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #007bff;
-    color: white;
-    transition: background-color 0.3s;
+.toolbar-group {
+  display: flex;
+  gap: 4px;
+  align-items: center;
 }
 
-.button:hover {
-    background-color: #0056b3;
+.toolbar-button {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  background: #fff;
+  color: #495057;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+.toolbar-button:hover {
+  background: #e9ecef;
+  border-color: #adb5bd;
+}
+
+.toolbar-button:active,
+.toolbar-button.active {
+  background: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+.toolbar-select {
+  padding: 6px 8px;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  background: #fff;
+  color: #495057;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Editor Styles */
+.editor-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
 }
 
 .editor {
-    border: 1px solid #ccc;
-    padding: 10px;
-    min-height: 300px;
-    border-radius: 5px;
-    background-color: #fafafa;
-    overflow-y: auto;
+  flex: 1;
+  padding: 20px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #212529;
+  background: #fff;
+  min-height: 500px;
 }
 
-.file-menu {
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
+.editor-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  color: #6c757d;
+  font-size: 16px;
+}
+
+/* TipTap Editor Styles */
+.ProseMirror {
+  outline: none;
+  padding: 20px;
+  min-height: 500px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.ProseMirror h1 {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 1em 0 0.5em 0;
+}
+
+.ProseMirror h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 1em 0 0.5em 0;
+}
+
+.ProseMirror h3 {
+  font-size: 1.25em;
+  font-weight: bold;
+  margin: 1em 0 0.5em 0;
+}
+
+.ProseMirror p {
+  margin: 0.5em 0;
+}
+
+.ProseMirror ul, .ProseMirror ol {
+  padding-left: 2em;
+  margin: 0.5em 0;
+}
+
+.ProseMirror blockquote {
+  border-left: 4px solid #e9ecef;
+  padding-left: 1em;
+  margin: 1em 0;
+  font-style: italic;
+  color: #6c757d;
+}
+
+.ProseMirror code {
+  background: #f8f9fa;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.9em;
+}
+
+.ProseMirror pre {
+  background: #f8f9fa;
+  padding: 1em;
+  border-radius: 4px;
+  overflow-x: auto;
+  margin: 1em 0;
+}
+
+.ProseMirror pre code {
+  background: none;
+  padding: 0;
+}
+
+/* Footer Styles */
+.app-footer {
+  background: #f8f9fa;
+  border-top: 1px solid #e9ecef;
+  padding: 12px 20px;
+  text-align: center;
+  margin-top: auto;
+}
+
+.app-footer p {
+  margin: 0;
+  font-size: 14px;
+  color: #6c757d;
+}
+
+.app-footer a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.app-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .file-menu {
+    padding: 8px 12px;
+    gap: 8px;
+  }
+  
+  .menu-button {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+  
+  .toolbar {
+    padding: 8px 12px;
+    gap: 6px;
+  }
+  
+  .toolbar-button {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+  
+  .editor {
+    padding: 12px;
+    font-size: 15px;
+  }
+  
+  .ProseMirror {
+    padding: 12px;
+    font-size: 15px;
+  }
+  
+  .app-footer {
+    padding: 8px 12px;
+  }
+  
+  .app-footer p {
+    font-size: 13px;
+  }
 }

@@ -1,23 +1,47 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useEditor, EditorContent } from '@tiptap/react';
+import StarterKit from '@tiptap/starter-kit';
+import TextStyle from '@tiptap/extension-text-style';
+import Color from '@tiptap/extension-color';
 
-const Editor: React.FC = () => {
-    const [content, setContent] = useState<string>('');
+interface EditorProps {
+  content: string;
+  onChange: (content: string) => void;
+}
 
-    const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-        setContent(event.target.value);
-    };
+const Editor: React.FC<EditorProps> = ({ content, onChange }) => {
+  const editor = useEditor({
+    extensions: [
+      StarterKit,
+      TextStyle,
+      Color
+    ],
+    content,
+    onUpdate: ({ editor }) => {
+      onChange(editor.getHTML());
+    },
+    editorProps: {
+      attributes: {
+        class: 'prose prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto focus:outline-none',
+      },
+    },
+  });
 
-    return (
-        <div className="editor">
-            <textarea
-                value={content}
-                onChange={handleInputChange}
-                placeholder="Start writing your document..."
-                rows={20}
-                cols={80}
-            />
-        </div>
-    );
+  React.useEffect(() => {
+    if (editor && content !== editor.getHTML()) {
+      editor.commands.setContent(content);
+    }
+  }, [content, editor]);
+
+  if (!editor) {
+    return <div className="editor-loading">Loading editor...</div>;
+  }
+
+  return (
+    <div className="editor-container">
+      <EditorContent editor={editor} className="editor" />
+    </div>
+  );
 };
 
 export default Editor;

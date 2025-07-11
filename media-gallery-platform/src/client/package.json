@@ -1,0 +1,32 @@
+{
+  "name": "media-gallery-client",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.23.0",
+    "axios": "^1.7.2",
+    "framer-motion": "^11.1.7",
+    "lucide-react": "^0.376.0",
+    "react-dropzone": "^14.2.3",
+    "react-hot-toast": "^2.4.1",
+    "react-intersection-observer": "^9.10.2"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.10",
+    "tailwindcss": "^3.4.3",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38"
+  }
+}

@@ -3,48 +3,214 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Endless Runner Game</title>
+    <title>🎮 Modern Arcade Runner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        body {
+        * {
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Orbitron', monospace;
+            background: linear-gradient(45deg, #0f0f23, #1a1a2e, #16213e, #0f3460);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            color: #fff;
+            overflow: hidden;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            font-family: Arial, sans-serif;
-            color: white;
         }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
         .game-container {
             text-align: center;
+            position: relative;
+            padding: 20px;
         }
-        canvas {
-            border: 3px solid #fff;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-        .game-info {
+        
+        .game-header {
             margin-bottom: 20px;
         }
+        
+        .game-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: textGlow 3s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+        }
+        
+        @keyframes textGlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .game-subtitle {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-top: 10px;
+        }
+        
+        .canvas-container {
+            position: relative;
+            display: inline-block;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 
+                0 0 50px rgba(0, 255, 255, 0.3),
+                0 0 100px rgba(255, 0, 255, 0.2),
+                inset 0 0 50px rgba(255, 255, 255, 0.1);
+        }
+        
+        canvas {
+            display: block;
+            background: linear-gradient(180deg, #87CEEB 0%, #98FB98 100%);
+        }
+        
+        .game-ui {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            pointer-events: none;
+        }
+        
+        .score-display, .lives-display, .high-score-display {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 700;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            font-size: 0.9rem;
+        }
+        
+        .high-score-display {
+            color: #ffd700;
+        }
+        
         .controls {
             margin-top: 20px;
-            opacity: 0.8;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .control-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            color: white;
+            font-family: 'Orbitron', monospace;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .control-btn:active {
+            transform: translateY(0);
+        }
+        
+        .game-instructions {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        .footer {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.8rem;
+            opacity: 0.6;
+        }
+        
+        .footer a {
+            color: #4ecdc4;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer a:hover {
+            color: #45b7d1;
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .game-title {
+                font-size: 2rem;
+            }
+            
+            canvas {
+                width: 100%;
+                max-width: 400px;
+                height: auto;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
         }
     </style>
 </head>
 <body>
     <div class="game-container">
-        <div class="game-info">
-            <h1>🏃‍♂️ Endless Runner</h1>
-            <p>Press SPACE to jump over obstacles!</p>
+        <div class="game-header">
+            <h1 class="game-title">🚀 NEON RUNNER</h1>
+            <p class="game-subtitle">Survive the endless digital frontier</p>
         </div>
-        <canvas id="gameCanvas" width="800" height="400"></canvas>
+        
+        <div class="canvas-container">
+            <canvas id="gameCanvas" width="800" height="400"></canvas>
+            <div class="game-ui">
+                <div class="score-display">Score: <span id="scoreValue">0</span></div>
+                <div class="lives-display">❤️ <span id="livesValue">3</span></div>
+                <div class="high-score-display">Best: <span id="highScoreValue">0</span></div>
+            </div>
+        </div>
+        
         <div class="controls">
-            <p>Use SPACEBAR to jump • Avoid red obstacles • Survive as long as possible!</p>
+            <button class="control-btn" id="jumpBtn">🚀 JUMP</button>
+            <button class="control-btn" id="pauseBtn">⏸️ PAUSE</button>
+            <button class="control-btn" id="restartBtn">🔄 RESTART</button>
+            <button class="control-btn" id="soundBtn">🔊 SOUND</button>
+        </div>
+        
+        <div class="game-instructions">
+            <p>SPACEBAR or JUMP button to leap • Avoid obstacles • Collect power-ups</p>
+        </div>
+        
+        <div class="footer">
+            <p>Created by <a href="https://github.com/sonbarse17" target="_blank">Sushant Sonbarse</a></p>
         </div>
     </div>
+    
     <script type="module" src="../src/index.js"></script>
 </body>
 </html>

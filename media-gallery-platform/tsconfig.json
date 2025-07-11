@@ -1,15 +1,17 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "module": "commonjs",
+    "target": "ES2020",
+    "module": "CommonJS",
+    "lib": ["ES2020"],
     "strict": true,
-    "jsx": "react",
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "./dist",
-    "rootDir": "./src"
+    "resolveJsonModule": true
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "references": [
+    { "path": "./src/server" },
+    { "path": "./src/client" }
+  ],
+  "files": []
 }

@@ -10,16 +10,17 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "mongoose": "^5.10.9",
+    "mongoose": "^6.0.0",
     "cors": "^2.8.5"
   },
   "devDependencies": {
-    "typescript": "^4.1.2",
-    "ts-node": "^9.1.1",
-    "jest": "^26.6.3",
-    "@types/jest": "^26.0.24",
-    "@types/node": "^14.14.31",
-    "@types/express": "^4.17.11"
+    "typescript": "^5.3.3",
+    "ts-node": "^10.9.2",
+    "jest": "^29.7.0",
+    "@types/jest": "^29.5.8",
+    "@types/node": "^20.10.4",
+    "@types/express": "^4.17.21",
+    "@types/cors": "^2.8.17"
   },
   "author": "Your Name",
   "license": "MIT"

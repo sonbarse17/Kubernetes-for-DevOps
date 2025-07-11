@@ -1,0 +1,16 @@
+{
+  "name": "media-gallery-server",
+  "version": "2.0.0",
+  "main": "index.ts",
+  "scripts": {
+    "dev": "tsx watch index.ts",
+    "build": "tsc",
+    "start": "node ../../dist/server/index.js"
+  },
+  "dependencies": {
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/uuid": "^9.0.8"
+  }
+}

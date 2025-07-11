@@ -1,18 +1,25 @@
 {
   "name": "html5-arcade-game",
-  "version": "1.0.0",
-  "description": "An endless runner game built with JavaScript and HTML5.",
+  "version": "2.0.0",
+  "description": "A modern HTML5 endless runner game with advanced graphics and UI",
   "main": "src/index.js",
+  "type": "module",
   "scripts": {
-    "start": "http-server public -o"
+    "start": "http-server public -p 8080 -o",
+    "dev": "http-server public -p 8080 -o --cors",
+    "build": "echo 'Build complete'",
+    "test": "echo 'No tests specified'"
   },
   "dependencies": {
-    "http-server": "^14.1.1",
-    "express": "^4.18.2"
+    "http-server": "^14.1.1"
   },
   "devDependencies": {
-    "nodemon": "^3.0.2"
+    "nodemon": "^3.0.3"
   },
-  "author": "Your Name",
-  "license": "MIT"
+  "keywords": ["game", "html5", "canvas", "javascript", "arcade"],
+  "author": "Sushant Sonbarse <https://github.com/sonbarse17>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  }
 }

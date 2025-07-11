@@ -1,11 +1,24 @@
 version: '3.8'
 
 services:
+  mongodb:
+    image: mongo:5.0
+    container_name: mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - scrum-network
+
   auth-service:
     build:
       context: ./services/auth-service
     ports:
       - "3001:3000"
+    depends_on:
+      - mongodb
     networks:
       - scrum-network
 
@@ -14,6 +27,8 @@ services:
       context: ./services/project-service
     ports:
       - "3002:3000"
+    depends_on:
+      - mongodb
     networks:
       - scrum-network
 
@@ -22,6 +37,8 @@ services:
       context: ./services/task-service
     ports:
       - "3003:3000"
+    depends_on:
+      - mongodb
     networks:
       - scrum-network
 
@@ -30,6 +47,8 @@ services:
       context: ./services/user-service
     ports:
       - "3004:3000"
+    depends_on:
+      - mongodb
     networks:
       - scrum-network
 
@@ -38,8 +57,26 @@ services:
       context: ./gateway
     ports:
       - "3000:3000"
+    depends_on:
+      - auth-service
+      - project-service
+      - task-service
+      - user-service
     networks:
       - scrum-network
+
+  frontend:
+    build:
+      context: ./gateway/frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - gateway
+    networks:
+      - scrum-network
+
+volumes:
+  mongodb_data:
 
 networks:
   scrum-network:
